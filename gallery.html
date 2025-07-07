@@ -1,0 +1,107 @@
+<!-- gallery.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | Aryan Sharma</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .gallery-section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+      background: transparent;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-gap: 15px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Fullscreen image overlay */
+    #fullscreen-img {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #fullscreen-img img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Gallery</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="info.html">Info</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="gallery-section">
+    <div class="gallery-grid">
+      <img src="a1.jpg" alt="Memory 1" />
+      <img src="a2.jpg" alt="Memory 2" />
+      <img src="a3.jpg" alt="Memory 3" />
+      <img src="a4.jpg" alt="Memory 4" />
+      <img src="a5.jpg" alt="Memory 5" />
+      <img src="a6.jpg" alt="Memory 6" />
+    </div>
+  </section>
+
+  <div id="fullscreen-img">
+    <img src="" alt="Full View" />
+  </div>
+
+  <footer>
+    <p>© 2025 Aryan Sharma. All rights reserved.</p>
+  </footer>
+
+  <!-- Internal JavaScript -->
+  <script>
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+    const fullscreenOverlay = document.getElementById('fullscreen-img');
+    const fullscreenImage = fullscreenOverlay.querySelector('img');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        fullscreenImage.src = img.src;
+        fullscreenOverlay.style.display = 'flex';
+      });
+    });
+
+    fullscreenOverlay.addEventListener('click', () => {
+      fullscreenOverlay.style.display = 'none';
+      fullscreenImage.src = '';
+    });
+  </script>
+</body>
+</html>
